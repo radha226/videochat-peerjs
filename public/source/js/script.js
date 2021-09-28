@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
      * The iceServers on this example are public and can be used for your project.
      */
     var peer = new Peer({
-        host: "localhost",
+        host: "192.168.1.9",
+   // host:'https://192.168.1.9',
+
         port: 9000,
         path: '/peerjs',
         debug: 3,
@@ -110,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function onReceiveStream(stream, element_id) {
         // Retrieve the video element according to the desired
         var video = document.getElementById(element_id);
+        console.log('video',video);
         // Set the given stream as the video source
         video.srcObject = stream;
 
@@ -171,6 +174,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         call.on('stream', function (stream) {
             window.peer_stream = stream;
+            console.log('peer camera stream',stream)
+
+            // success: function(stream){
+            //     window.localStream = stream;
+            //     onReceiveStream(stream, 'my-camera');
+            // },
+            // error: function(err){
+            //     alert("Cannot get access to your camera and video !");
+            //     console.error(err);
+            // }
 
             onReceiveStream(stream, 'peer-camera');
         });
