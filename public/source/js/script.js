@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     peer.on('connection', function (connection) {
         conn = connection;
         peer_id = connection.peer;
+        console.log('peerid', peer_id);
 
         // Use the handleMessage to callback when a message comes in
         conn.on('data', handleMessage);
